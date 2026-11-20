@@ -44,7 +44,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../App_web:/usr/share/nginx/html:ro
+      - ./App_web:/usr/share/nginx/html:ro
     depends_on:
       - nodered
     restart: unless-stopped
