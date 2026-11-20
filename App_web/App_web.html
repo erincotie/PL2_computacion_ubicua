@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang = "es">
+    <head>
+        <!--Configuración-->
+        <meta charset = "UTF-8"> <!--mostrar caracteres especiales-->
+
+        <!--adaptar la web a pantallas-->
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+
+        <title> Control de Presa Inteligente</title>
+
+        <!--Conexión CSS-->
+        <link rel="stylesheet" href="App_web_estilo.css">
+
+    </head>
+
+    <body>
+        <!--Contenedor base, general-->
+        <div class="contenedor">
+
+            <!--Menu lateral-->
+            <aside class="menu-lateral">
+                <h2> Control Presa</h2>
+
+                <!--Navegacion en el menu-lateral // secciones -->
+                <nav>
+                    <a href="#" class="activo" data-section="inicio">Inicio</a>
+                    <a href="#" data-section="sensores">Sensores</a>
+                    <a href="#" data-section="actuadores">Actuadores</a>
+                    <a href="#" data-section="historial">Historial</a>
+                </nav>
+            </aside>
+
+            <!--Zona principal-->
+            <main class="contenido">
+                <!--CABECERA-->
+                <header class="cabecera">
+                    <div>
+                        <h1>Panel de control</h1>
+                        <p>Monitorización de la presa inteligente</p>
+                    </div>
+
+                    <!--Indica estado app (se puede obviar)-->
+                    <span class="estado-online">
+                        Sistema online
+                    </span>
+                </header>
+
+                <!-- SECCIÓN DE INICIO -->
+                <section id="inicio" class="pagina">
+
+                    <h2>Bienvenida al panel de control de la presa inteligente</h2>
+
+                    <p>
+                        Desde aquí se podrá consultar el estado general
+                        de la presa.
+                    </p>
+
+                    <div class="tarjetas">
+
+                        <article class="tarjeta-sensor">
+                            <h3>Sensores</h3>
+                            <p>Consulta de las mediciones de la presa.</p>
+                        </article>
+
+                        <article class="tarjeta-sensor">
+                            <h3>Actuadores</h3>
+                            <p>Control de los dispositivos de la presa.</p>
+                        </article>
+
+                        <article class="tarjeta-sensor">
+                            <h3>Historial</h3>
+                            <p>Consulta de  las mediciones anteriores.</p>
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <!--SENSORES-->
+                <section id="sensores" class="pagina resumen" hidden>
+                    <h2>Estado general</h2>
+                    <!--Agrupamos todas las tarjetas de sensores-->
+                    <div class="tarjetas">
+
+                        <!--Nivel agua-->
+                        <article class="tarjeta-sensor">
+                            <div class="sensor-cabecera">
+                                <div class="sensor-icono">
+                                    <span>❖ <h3>Nivel de la presa</h3></span>
+                                </div>
+
+                                <div>
+                                    <p class="sensor-descripcion">
+                                        Sensor de profundidad
+                                    </p>
+                                </div>
+
+                                <span class="sensor-estado">
+                                    Normal
+                                </span>
+                            </div>
+
+                            <div class="sensor-valor">
+                                <p>65 <span>%</span></p>
+                            </div>
+
+                            <!--Barra visual-->
+                            <div class="barra-fondo">
+                                <div class="barra-nivel"></div>
+                            </div>
+                            
+                            <!-- Info extra-->
+                            <div class="sensor-pie">
+                                <span>Capacidad de la presa</span>
+                            </div>
+
+                        </article>
+
+                        <!--Sensor luz-->
+                        <article class="tarjeta-sensor">
+                            <div class="sensor-cabecera">
+                                <div class="sensor-icono">
+                                    <span>✶ <h3>Luminosidad</h3></span>
+                                </div>
+
+                                <div>
+                                    <p class="sensor-descripcion">
+                                        Sensor LDR
+                                    </p>
+                                </div>
+
+                                <!--Indicamos que esta oscuro-->
+                                <span class="sensor-estado estado-oscuro">
+                                    Oscuro
+                                </span>
+                            </div>
+
+                            <div class="sensor-valor">
+                                <p> Oscuro(ejemplo) <span></span></p>
+                            </div>
+
+                            <!--Info extra-->
+                            <div class="sensor-pie">
+                                <p>Iluminación ambiental</p>
+                                <span>Estado de luz</span>
+                            </div>
+
+                        </article>
+
+                        <!--Sesnor vibracion-->
+                        <article class="tarjeta-sensor">
+                            <div class="sensor-cabecera">
+                                <div class="sensor-icono">
+                                    <span>⇝ <h3>Vibración</h3></span>
+                                </div>
+
+                                <div>
+                                    <p class="sensor-descripcion">
+                                        Sensor SW-420
+                                    </p>
+                                </div>
+
+                                <span class="sensor-estado">
+                                    Sin alertas
+                                </span>
+                            </div>
+
+                           <div class=sensor-valor>
+                                <p>---</p>
+                           </div>
+
+                           <!--Info extra-->
+                           <div class="sensor-pie">
+                                <span>Detección de movimiento</span>
+                                <span>Esperando lectura</span>
+                           </div>
+                        </article>
+
+                    </div>
+                </section>
+
+
+                <!-- SECCIÓN ACTUADORES-->
+                <section id="actuadores" class="pagina actuadores" hidden>
+                    <h2>Control de los actuadores</h2>
+
+                    <!--Dividimos en tarjetas-->
+                    <div class="tarjetas">
+                        <!--Actuador de las compuertas-->
+                        <article class="tarjeta">
+                            <h3>Compuertas</h3>
+                            <!--Estado-->
+                            <p>Cerradas</p>
+
+                            <!--Botones-->
+                            <button>Abrir</button>
+                            <button>Cerrar</button>
+                        </article>
+
+                        <!--Actuador de iluminación-->
+                        <article class="tarjeta">
+                            <h3>Iluminación LED</h3>
+                            <!--Estado-->
+                            <p>Apagada</p>
+
+                            <!--Botones-->
+                            <button>Activar</button>
+                            <button>Desactivar</button>
+                        </article>
+
+                        <!--Actuador de alarma-->
+                        <article class="tarjeta">
+                            <h3>Alarma sonora</h3>
+                            <!--Estado-->
+                            <p>Apagada</p>
+
+                            <!--Botones-->
+                            <button>Activar</button>
+                            <button>Desactivar</button>
+                        </article>
+
+                        <!--Bomba de agua-->
+                        <article class="tarjeta">
+                            <h3>Bomba de agua</h3>
+                            <!--Estado-->
+                            <p>Desactivada(p.ej)</p>
+
+                            <!--Botones-->
+                            <button>Activar</button>
+                            <button>Desactivar</button>
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <!--GRÁFICAS-->
+                <section id="historial" class="pagina graficas" hidden>
+                    <h2>Historial</h2>
+
+                    <div class="tarjetas">
+                        <!--Donde se muestra-->
+                        <p>Gráfica nivel de agua</p>
+                    </div>
+                </section>
+
+
+            </main>
+
+
+        </div>
+
+        <!--Conexión con JAVASCRIPT-->
+        <script src="App_web_script.js"></script>
+
+    </body>
+
+</html>
+
+

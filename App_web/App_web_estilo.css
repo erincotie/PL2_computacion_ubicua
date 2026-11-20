@@ -1,0 +1,420 @@
+
+/*PALETA DE COLORES Y CONFIGURACIÓN */
+:root {
+    --azul-petroleo: #244B58;
+    --teal: #367F7A;
+    --verde-agua: #A8D5CB;
+    --verde-jade: #C5D8BD;
+    --piedra: #D9C9A5;
+    --fondo: #EDF5F1;
+    --blanco: #FFFFFF;
+    --texto: #30464A;
+    --texto-suave: #718589;
+
+    /*Para distintos estados*/
+    --correcto: #5B9B77;
+    --aviso: #D69A4B;
+    --emergencia: #C85D5D;
+}
+
+/*CONFIGURACIÓN GENERAL*/
+/* Eliminamos márgenes predeterminados*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general de toda la página */
+body {
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+
+    /*Fondo con degradados*/
+    background:
+        radial-gradient(circle at 90% 5%,
+        rgba(168, 213, 203, 0.35),
+        transparent 30%),
+
+        linear-gradient(
+        135deg,
+        #EDF5F1,
+        #E1EFEB,
+        #F3F6EE
+        );
+
+    min-height: 100vh;
+}
+
+/* Colocamos el menú y el contenido uno al lado del otro */
+.contenedor {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* MENÚ LATERAL*/
+
+.menu-lateral {
+    width: 250px;
+    min-width: 250px;
+    padding: 35px 22px;
+    color: white;
+
+    /*Fondo con degradado*/
+    background:
+        radial-gradient(circle at 20% 10%,
+        rgba(168, 213, 203, 0.25),
+        transparent 35%),
+
+        linear-gradient(
+        180deg,
+        #244B58,
+        #285F61,
+        #244B58
+        );
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Simbolito en el menu */
+.menu-lateral::after {
+    content: "❈";
+
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    font-size: 120px;
+    color: rgba(255, 255, 255, 0.07);
+
+    /*Evitamos que el simbolito interfiera con algo*/
+    pointer-events: none;
+}
+
+/* Nombre de la aplicación */
+.menu-lateral h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    color: #D9EEE6;
+}
+
+/* Enlaces del menú */
+.menu-lateral a {
+    display: block;
+    color: #DCEBE7;
+    text-decoration: none;
+    padding: 14px 13px;
+    margin: 12px 0;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+/* Efecto de pasar el ratón */
+.menu-lateral a:hover {
+    background-color: rgba(168, 213, 203, 0.18);
+    border-color: rgba(168, 213, 203, 0.4);
+    padding-left: 20px;
+    color: white;
+}
+
+
+/*CONTENIDO PRINCIPAL Y CABECERA*/
+/*Mostramos secciones de la app*/
+.contenido {
+    flex: 1;
+    padding: 38px;
+    /*Permitimos que se adapte sin que se salga horizontalmente*/
+    min-width: 0;
+}
+
+/* Cabecera superior*/
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    margin-bottom: 35px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    border-left: 6px solid var(--teal);
+    box-shadow: 0 6px 20px rgba(36, 75, 88, 0.08);
+}
+
+/* Título principal */
+.cabecera h1 {
+    font-size: 30px;
+    color: var(--azul-petroleo);
+    margin-bottom: 8px;
+}
+
+/* Descripción cabecera*/
+.cabecera p {
+    color: var(--texto-suave);
+    font-size: 15px;
+}
+
+
+/*TARJETAS DE SENSORES*/
+/*Sección general*/
+.resumen {
+    margin-bottom: 35px;
+}
+
+/* Títulos de sensores */
+.resumen h3 {
+    display: inline;
+    color: var(--teal);
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+/* Texto de la sección de sensores */
+.resumen p {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--azul-petroleo);
+}
+
+/*Valor de cada uno*/
+.sensor-valor p{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* Título de la sección */
+.resumen > h2 {
+    color: var(--azul-petroleo);
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+/* Contenedor que organiza las tres tarjetas */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* Diseño de las tarjetas */
+.tarjeta-sensor {
+    background: linear-gradient(
+        145deg,
+        #FFFFFF,
+        #EFF8F4
+    );
+
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid #C5DDD3;
+
+    box-shadow: 0 7px 20px rgba(36, 75, 88, 0.10);
+}
+
+/*Fondo de la barra de nivel*/
+.barra-fondo {
+    width: 100%;
+    height: 12px;
+    background-color: #D9E8E2;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/*Parte coloreada de la barra*/
+.barra-nivel {
+    width: 65%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--verde-agua));
+    border-radius: 20px;
+}
+
+/*Estado de sensor cuando hay poca luz*/
+.sensor-estado.estado-oscuro {
+    background-color: #DCE9F0;
+    color: #367F7A;
+    border: 1px solid #B8D1DC;
+}
+
+/*Estado de sensor cuando hay luz*/
+.sensor-estado.estado-iluminado {
+    background-color: #E1EFE2;
+    color: #5B9B77;
+    border: 1px solid #C5D8BD;
+}
+
+
+
+/*TARJETAS DE ACTUADORES*/
+/*Espacio inferior de la sección*/
+.actuadores {
+    margin-bottom: 35px;
+}
+
+/* Cada actuador */
+.actuadores .tarjeta {
+    background: white;
+    padding: 27px;
+    border-radius: 18px;
+    border: 1px solid #D4E8DF;
+    box-shadow: 0 6px 18px rgba(36, 75, 88, 0.07);
+    position: relative;
+}
+
+/* Títulos de actuadores */
+.actuadores h3 {
+    color: var(--azul-petroleo);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Texto de actuadores */
+.actuadores p {
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+
+/*BOTONES*/
+button {
+    background: linear-gradient(
+        135deg,
+        var(--teal),
+        var(--azul-petroleo)
+    );
+
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 11px 18px;
+    margin: 12px 5px 0 0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(36, 75, 88, 0.15);
+    transition: 0.3s;
+}
+
+/*Efecto al pasar el ratón*/
+button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(
+        135deg,
+        #4C9990,
+        #367F7A
+    );
+
+    box-shadow: 0 7px 15px rgba(36, 75, 88, 0.2);
+}
+
+/* Efecto al pulsar */
+button:active {
+    transform: scale(0.97);
+}
+
+
+/*GRÁFICAS*/
+.graficas {
+    background:
+        linear-gradient(
+        135deg,
+        #FFFFFF,
+        #F0F8F4
+        );
+
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #D4E8DF;
+    box-shadow: 0 7px 20px rgba(36, 75, 88, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Título de las gráficas */
+.graficas h2 {
+    color: var(--azul-petroleo);
+    margin-bottom: 20px;
+}
+
+/* Simbolito */
+.graficas::after {
+    content: "❖";
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    font-size: 55px;
+    color: rgba(54, 127, 122, 0.12);
+    pointer-events: none;
+}
+
+
+/*ADAPTACIÓN A DISTINTOS TAMAÑOS DE PANTALLA*/
+/*Tablets y tamaño mediano*/
+@media (max-width: 950px) {
+    .resumen,
+    .actuadores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*Tamaño peque*/
+@media (max-width: 650px) {
+    /*Menú encima de contenido*/
+    .contenedor {
+        flex-direction: column;
+    }
+
+    /*Ocupa todo*/
+    .menu-lateral {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /*Reducimos márgenes interiores*/
+    .contenido {
+        padding: 20px;
+    }
+
+    .resumen,
+    .actuadores {
+        grid-template-columns: 1fr;
+    }
+
+    /*Pasa a vertical*/
+    .cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 950px) {
+    .tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .tarjetas {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*NAVEGACIÓN ENTRE SECCIONES*/
+/*Ocultamos las no seleccionadas*/
+.pagina[hidden]{
+    display: none !important;
+}
+
+/* Estilo del seleccionado */
+.menu-lateral a.activo {
+    background-color: rgba(168, 213, 203, 0.25);
+    border: 1px solid rgba(168, 213, 203, 0.4);
+    border-radius: 12px;
+    color: white;
+    padding-left: 20px;
+}
