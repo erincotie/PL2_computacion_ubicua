@@ -18,13 +18,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  
-  nodered:                      
+
+  nodered:
     image: nodered/node-red:latest
+    container_name: presa_nodered
     ports:
       - "1880:1880"
     environment:
-      DB_HOST: db              
+      TZ: ${TZ}
+      DB_HOST: db
       DB_PORT: 5432
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
@@ -35,19 +37,18 @@ services:
       db:
         condition: service_healthy
     restart: always
-  
-redis:
-  image: redis:7-alpine
-  restart: always
 
   frontend:
-    build: ./frontend
+    image: nginx:alpine
+    container_name: presa_frontend
     ports:
       - "8080:80"
+    volumes:
+      - ../App_web:/usr/share/nginx/html:ro
     depends_on:
       - nodered
+    restart: unless-stopped
 
 volumes:
   pg_data:
   nodered_data:
-  
