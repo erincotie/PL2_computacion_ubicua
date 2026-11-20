@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: presa_bbdd
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      TZ: ${TZ}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  nodered:                      
+    image: nodered/node-red:latest
+    ports:
+      - "1880:1880"
+    environment:
+      DB_HOST: db              
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    volumes:
+      - nodered_data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+  
+redis:
+  image: redis:7-alpine
+  restart: always
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - nodered
+
+volumes:
+  pg_data:
+  nodered_data:
+  
